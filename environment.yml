@@ -1,0 +1,8 @@
+name: chess
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip:
+    - pygame==1.9.6
+    - python-chess==0.30.1
