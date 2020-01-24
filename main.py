@@ -5,7 +5,8 @@ def setup():
     pygame.init()
     win = pygame.display.set_mode((500,500))
     pygame.display.set_caption("Chess AI")
-    pygame.image.load("chess.png")
+    icon = pygame.image.load("src/icon.png")
+    pygame.display.set_icon(icon)
 
 def run():
     running = True
