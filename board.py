@@ -22,3 +22,9 @@ def get_board(x:chess.Board)->list:
         if chess.BB_SQUARES[square] & chess.BB_FILE_H & square == chess.H1:
             board_rep.append(row_rep)
     return board_rep
+
+@patch
+def draw_board(x:chess.Board, win):
+    global img_board
+    win.blit(img_board, (0,0))
+    x.draw_pieces(win)
