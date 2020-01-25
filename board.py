@@ -28,3 +28,7 @@ def draw_board(x:chess.Board, win):
     global img_board
     win.blit(img_board, (0,0))
     x.draw_pieces(win)
+
+@patch
+def draw_pieces(x:chess.Board, win):
+    pass

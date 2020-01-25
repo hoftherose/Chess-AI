@@ -1,5 +1,6 @@
 import chess
 import pygame
+import board
 
 def setup():
     pygame.init()
@@ -7,11 +8,15 @@ def setup():
     pygame.display.set_caption("Chess AI")
     icon = pygame.image.load("src/icon.png")
     pygame.display.set_icon(icon)
+    board = chess.Board()
+    rep = board.get_board()
+    board.draw_board(win)
 
 def run():
     running = True
     while running:
         pygame.time.wait(100)
+        # refresh_board()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
