@@ -32,4 +32,9 @@ def draw_board(x:chess.Board, win):
 
 @patch
 def draw_pieces(x:chess.Board, win):
-    pass
+    global images
+    board_rep = x.get_board()
+    for r,row in enumerate(board_rep):
+        for c,symbol in enumerate(row):
+            if symbol==".": continue
+            win.blit(images[symbol], (50+50*c,50+50*r))
