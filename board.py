@@ -13,14 +13,15 @@ img_pawn = pygame.image.load("src/Piece_Pawn.jpg")
 @patch
 def get_board(x:chess.Board)->list:
     board_rep = []
+    row_rep = []
     for square in chess.SQUARES_180:
-        row_rep = []
         if piece := x.piece_at(square):
             row_rep.append(piece.symbol())
         else:
             row_rep.append(".")
-        if chess.BB_SQUARES[square] & chess.BB_FILE_H & square == chess.H1:
+        if square%8 == 7:
             board_rep.append(row_rep)
+            row_rep = []
     return board_rep
 
 @patch
