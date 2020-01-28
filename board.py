@@ -2,13 +2,21 @@ from fastcore.all import *
 import pygame
 import chess
 
-img_board = pygame.image.load("src/board.jpg")
-img_king = pygame.image.load("src/Piece_King.jpg")
-img_queen = pygame.image.load("src/Piece_Queen.jpg")
-img_bishop = pygame.image.load("src/Piece_Bishop.jpg")
-img_knight = pygame.image.load("src/Piece_Knight.jpg")
-img_rook = pygame.image.load("src/Piece_Rook.jpg")
-img_pawn = pygame.image.load("src/Piece_Pawn.jpg")
+images = {
+    "board": pygame.image.load("src/board.jpg"),
+    "k": pygame.image.load("src/Piece_King_B.png"),
+    "q": pygame.image.load("src/Piece_Queen_B.png"),
+    "b": pygame.image.load("src/Piece_Bishop_B.png"),
+    "n": pygame.image.load("src/Piece_Knight_B.png"),
+    "r": pygame.image.load("src/Piece_Rook_B.png"),
+    "p": pygame.image.load("src/Piece_Pawn_B.png"),
+    "K": pygame.image.load("src/Piece_King_W.png"),
+    "Q": pygame.image.load("src/Piece_Queen_W.png"),
+    "B": pygame.image.load("src/Piece_Bishop_W.png"),
+    "N": pygame.image.load("src/Piece_Knight_W.png"),
+    "R": pygame.image.load("src/Piece_Rook_W.png"),
+    "P": pygame.image.load("src/Piece_Pawn_W.png")
+}
 
 @patch
 def get_board(x:chess.Board)->list:
@@ -26,7 +34,8 @@ def get_board(x:chess.Board)->list:
 
 @patch
 def draw_board(x:chess.Board, win):
-    global img_board
+    global images
+    img_board = pygame.transform.scale(images["board"], (1000, 1000))
     win.blit(img_board, (0,0))
     x.draw_pieces(win)
 
