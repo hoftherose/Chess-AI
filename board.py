@@ -1,8 +1,8 @@
-from fastcore.all import *
+from fastcore.all import patch
 import pygame
 import chess
 
-images = {
+assets = {
     "board": pygame.image.load("src/board.jpg"),
     "k": pygame.image.load("src/Piece_King_B.png"),
     "q": pygame.image.load("src/Piece_Queen_B.png"),
@@ -34,16 +34,16 @@ def get_board(x:chess.Board)->list:
 
 @patch
 def draw_board(x:chess.Board, win):
-    global images
-    img_board = pygame.transform.scale(images["board"], (1000, 1000))
-    win.blit(img_board, (0,0))
+    global assets
+    img_board = pygame.transform.scale(assets["board"], (1000, 1000))
+    win.blit(img_board, (300,0))
     x.draw_pieces(win)
 
 @patch
 def draw_pieces(x:chess.Board, win):
-    global images
+    global assets
     board_rep = x.get_board()
     for r,row in enumerate(board_rep):
         for c,symbol in enumerate(row):
             if symbol==".": continue
-            win.blit(images[symbol], (50+50*c,50+50*r))
+            win.blit(assets[symbol], (50+50*c,50+50*r))
