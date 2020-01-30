@@ -22,6 +22,10 @@ def run():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                absx, absy = event.pos
+                if 0 <= (x:=absx-xmin) and x <= xrang and 0 <= (y:=absy-ymin) and y <= yrang:
+                    print((x//col_len,y//row_len))
 
 def main():
     setup()
