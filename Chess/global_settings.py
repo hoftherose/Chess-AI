@@ -1,5 +1,4 @@
 import pygame
-__all__ = ["assets", "BoardScale", "BoardRange", "BoardShift", "WindowColor", "WindowSize"]
 
 assets = {
     "board": pygame.image.load("src/board.jpg"),
@@ -21,7 +20,17 @@ assets = {
 }
 
 BoardScale = (1000, 1000)
-BoardRange = {"xmin": 154, "xmax": 870, "xrang": 716, "ymin": 138, "ymax": 880, "yrang": 742}
+
+xmin = 454
+xmax = 1170
+ymin = 138
+ymax = 880
+
+xrang = xmax-xmin
+yrang = ymax-ymin
+col_len = xrang/8
+row_len = yrang/8
+
 BoardShift = (300, 0)
 
 WindowColor = (255,255,255)

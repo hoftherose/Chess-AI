@@ -31,6 +31,4 @@ def draw_pieces(x:chess.Board, win):
     for r,row in enumerate(board_rep):
         for c,symbol in enumerate(row):
             if symbol==".": continue
-            col_len = BoardRange["xrang"]/8
-            row_len = BoardRange["yrang"]/8
-            win.blit(assets["Pieces"][symbol], (450+col_len*c,135+row_len*r))
+            win.blit(assets["Pieces"][symbol], (xmin+col_len*c,ymin+row_len*r))
