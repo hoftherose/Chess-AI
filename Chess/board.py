@@ -29,8 +29,8 @@ def draw_board(x:chess.Board, win):
 def draw_pieces(x:chess.Board, win):
     global assets
     board_rep = x.get_board()
-    for r,row in enumerate(board_rep):
-        for c,symbol in enumerate(row):
+    for c,col in enumerate(board_rep[::-1]):
+        for r,symbol in enumerate(col):
             if symbol==".": continue
             win.blit(assets["Pieces"][symbol], (xmin+col_len*c,ymin+row_len*r))
 

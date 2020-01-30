@@ -9,6 +9,7 @@ def refresh(win):
     global chessboard
     rep = chessboard.get_board()
     chessboard.draw_board(win)
+    pygame.display.update()
 
 def setup():
     global chessboard
@@ -36,6 +37,7 @@ def run(win):
                 if 0 <= (x:=absx-xmin) and x <= xrang and 0 <= (y:=absy-ymin) and y <= yrang:
                     col, row = int(x//col_len), int(y//row_len)
                     chessboard.select(col,row)
+                    print(chessboard.get_board())
         refresh(win)
 
 def main():
