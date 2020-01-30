@@ -18,10 +18,11 @@ def setup():
     pygame.display.set_caption("Chess AI")
     icon = assets["icon"]
     pygame.display.set_icon(icon)
-    rep = chessboard.get_board()
-    chessboard.draw_board(win)
+    chessboard.selected = None
+    refresh(win)
+    return win
 
-def run():
+def run(win):
     global chessboard
     running = True
     while running and not(chessboard.is_checkmate()):
@@ -34,12 +35,12 @@ def run():
                 absx, absy = event.pos
                 if 0 <= (x:=absx-xmin) and x <= xrang and 0 <= (y:=absy-ymin) and y <= yrang:
                     col, row = int(x//col_len), int(y//row_len)
-                    print(col, row)
-                    print(chessboard.get_board()[row][col])
+                    chessboard.select(col,row)
+        refresh(win)
 
 def main():
-    setup()
-    run()
+    win = setup()
+    run(win)
     pygame.quit()
 
 if __name__ == "__main__":
