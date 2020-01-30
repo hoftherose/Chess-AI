@@ -31,4 +31,4 @@ def draw_pieces(x:chess.Board, win):
     for r,row in enumerate(board_rep):
         for c,symbol in enumerate(row):
             if symbol==".": continue
-            win.blit(assets[symbol], (450+89.5*c,135+92.75*r))
+            win.blit(assets["Pieces"][symbol], (450+89.5*c,135+92.75*r))

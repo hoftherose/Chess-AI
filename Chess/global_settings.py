@@ -1,5 +1,5 @@
 import pygame
-__all__ = ["assets", "BoardScale", "BoardRange", "BoardShift"]
+__all__ = ["assets", "BoardScale", "BoardRange", "BoardShift", "WindowSize"]
 
 assets = {
     "board": pygame.image.load("src/board.jpg"),
