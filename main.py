@@ -5,6 +5,11 @@ import pygame
 
 chessboard = chess.Board()
 
+def refresh(win):
+    global chessboard
+    rep = chessboard.get_board()
+    chessboard.draw_board(win)
+
 def setup():
     global chessboard
     pygame.init()
