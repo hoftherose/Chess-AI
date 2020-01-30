@@ -1,4 +1,5 @@
 from .global_settings import *
+from .utils import *
 from fastcore.all import patch
 import pygame
 import chess
@@ -32,3 +33,15 @@ def draw_pieces(x:chess.Board, win):
         for c,symbol in enumerate(row):
             if symbol==".": continue
             win.blit(assets["Pieces"][symbol], (xmin+col_len*c,ymin+row_len*r))
+
+@patch
+def select(x:chess.Board, col, row):
+    uci = conv2uci(col,row)
+    if x.selected is None:
+        x.selected = uci
+        print(x.selected)
+        return 0
+    print(x.selected+uci)
+    move = chess.Move.from_uci(x.selected+uci)
+    x.selected=None
+    x.push(move)
