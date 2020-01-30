@@ -1,7 +1,7 @@
 from Chess.global_settings import *
+import Chess.board
 import chess
 import pygame
-import board
 
 chessboard = chess.Board()
 
@@ -19,7 +19,7 @@ def setup():
 def run():
     global chessboard
     running = True
-    while running:
+    while running and not(chessboard.is_checkmate()):
         pygame.time.wait(100)
         # refresh_board()
         for event in pygame.event.get():

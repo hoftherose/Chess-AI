@@ -1,4 +1,4 @@
-from Chess.global_settings import *
+from .global_settings import *
 from fastcore.all import patch
 import pygame
 import chess
