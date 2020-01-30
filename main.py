@@ -6,6 +6,7 @@ import board
 def setup():
     pygame.init()
     win = pygame.display.set_mode(WindowSize)
+    win.fill(WindowColor)
     pygame.display.set_caption("Chess AI")
     icon = assets["icon"]
     pygame.display.set_icon(icon)
