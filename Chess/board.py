@@ -19,14 +19,14 @@ def get_board(x:chess.Board)->list:
     return board_rep
 
 @patch
-def draw_board(x:chess.Board, win):
+def draw_board(x:chess.Board, win:pygame.Surface):
     global assets
     img_board = pygame.transform.scale(assets["board"], BoardScale)
     win.blit(img_board, BoardShift)
     x.draw_pieces(win)
 
 @patch
-def draw_pieces(x:chess.Board, win):
+def draw_pieces(x:chess.Board, win:pygame.Surface):
     global assets
     board_rep = x.get_board()
     for c,col in enumerate(board_rep[::-1]):
@@ -35,7 +35,7 @@ def draw_pieces(x:chess.Board, win):
             win.blit(assets["Pieces"][symbol], (xmin+col_len*c,ymin+row_len*r))
 
 @patch
-def select(x:chess.Board, col, row):
+def select(x:chess.Board, col:int, row:int):
     uci = conv2uci(col,row)
     if x.selected is not None:
         if x.selected != uci:

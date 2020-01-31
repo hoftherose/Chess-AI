@@ -5,7 +5,7 @@ import pygame
 
 chessboard = chess.Board()
 
-def refresh(win):
+def refresh(win:pygame.Surface):
     global chessboard
     rep = chessboard.get_board()
     chessboard.draw_board(win)
@@ -23,7 +23,7 @@ def setup():
     refresh(win)
     return win
 
-def run(win):
+def run(win:pygame.Surface):
     global chessboard
     running = True
     while running and not(chessboard.is_checkmate()):
