@@ -37,11 +37,11 @@ def draw_pieces(x:chess.Board, win):
 @patch
 def select(x:chess.Board, col, row):
     uci = conv2uci(col,row)
-    if x.selected is None:
+    if x.selected is not None:
+        if x.selected != uci:
+            move = chess.Move.from_uci(x.selected+uci)
+            if x.is_legal(move):
+                x.push(move)
+        x.selected=None
+    else:
         x.selected = uci
-        print(x.selected)
-        return 0
-    print(x.selected+uci)
-    move = chess.Move.from_uci(x.selected+uci)
-    x.selected=None
-    x.push(move)

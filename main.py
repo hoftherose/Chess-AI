@@ -37,7 +37,6 @@ def run(win):
                 if 0 <= (x:=absx-xmin) and x <= xrang and 0 <= (y:=absy-ymin) and y <= yrang:
                     col, row = int(x//col_len), int(y//row_len)
                     chessboard.select(col,row)
-                    print(chessboard.get_board())
         refresh(win)
 
 def main():
