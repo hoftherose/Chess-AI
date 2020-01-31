@@ -24,6 +24,8 @@ def draw_board(x:chess.Board, win:pygame.Surface):
     img_board = pygame.transform.scale(assets["board"], BoardScale)
     win.blit(img_board, BoardShift)
     x.draw_pieces(win)
+    if x.selected is not None:
+        x.highlight(win)
 
 @patch
 def draw_pieces(x:chess.Board, win:pygame.Surface):
@@ -45,3 +47,13 @@ def select(x:chess.Board, col:int, row:int):
         x.selected=None
     else:
         x.selected = uci
+
+@patch
+def highlight(x:chess.Board, win:pygame.Surface):
+    global assets
+    select_effect = pygame.transform.scale(assets["highlight"], (int(col_len), int(row_len)))
+    win.blit(select_effect, x.get_selected_coord())
+
+@patch
+def get_selected_coord(x:chess.Board):
+    return (300,0)

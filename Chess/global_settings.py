@@ -3,6 +3,7 @@ import pygame
 assets = {
     "board": pygame.image.load("src/board.jpg"),
     "icon": pygame.image.load("src/icon.png"),
+    "highlight": pygame.image.load("src/highlight.png"),
     "Pieces": {
         "k": pygame.image.load("src/Piece_King_B.png"),
         "q": pygame.image.load("src/Piece_Queen_B.png"),
