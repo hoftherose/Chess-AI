@@ -41,12 +41,13 @@ def select(x:chess.Board, col:int, row:int):
     coords = (col,row)
     if x.selected is not None:
         if x.selected != coords:
-            move = chess.Move.from_uci(conv2uci(*x.selected)+conv2uci(col,row))
+            uci = coord2uci(x.selected, coords)
+            move = chess.Move.from_uci(uci)
             if x.is_legal(move):
                 x.push(move)
         x.selected=None
     else:
-        x.selected = (col,row)
+        x.selected = coords
 
 @patch
 def highlight(x:chess.Board, win:pygame.Surface):
