@@ -38,15 +38,15 @@ def draw_pieces(x:chess.Board, win:pygame.Surface):
 
 @patch
 def select(x:chess.Board, col:int, row:int):
-    uci = conv2uci(col,row)
+    coords = (col,row)
     if x.selected is not None:
-        if x.selected != uci:
-            move = chess.Move.from_uci(x.selected+uci)
+        if x.selected != coords:
+            move = chess.Move.from_uci(conv2uci(*x.selected)+conv2uci(col,row))
             if x.is_legal(move):
                 x.push(move)
         x.selected=None
     else:
-        x.selected = uci
+        x.selected = (col,row)
 
 @patch
 def highlight(x:chess.Board, win:pygame.Surface):
