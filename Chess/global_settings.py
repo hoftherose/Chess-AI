@@ -22,9 +22,9 @@ assets = {
 
 BoardScale = (1000, 1000)
 
-xmin = 454
+xmin = 455
 xmax = 1170
-ymin = 138
+ymin = 139
 ymax = 880
 
 xrang = xmax-xmin
@@ -33,6 +33,7 @@ col_len = xrang/8
 row_len = yrang/8
 
 BoardShift = (300, 0)
+BoardCorner = (455,139)
 
 WindowColor = (255,255,255)
 WindowSize = (1600,1000)

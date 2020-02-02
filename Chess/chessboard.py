@@ -57,4 +57,5 @@ def highlight(board:chess.Board, win:pygame.Surface):
 
 @patch
 def get_selected_coord(board:chess.Board):
-    return (300,0)
+    CellShift=[prod(values) for values in zip((col_len,row_len),board.selected)]
+    return [sum(values) for values in zip(BoardCorner,CellShift)]
