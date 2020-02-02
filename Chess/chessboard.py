@@ -5,11 +5,11 @@ import pygame
 import chess
 
 @patch
-def get_board(x:chess.Board)->list:
+def get_board(board:chess.Board)->list:
     board_rep = []
     row_rep = []
     for square in chess.SQUARES_180:
-        if piece := x.piece_at(square):
+        if piece := board.piece_at(square):
             row_rep.append(piece.symbol())
         else:
             row_rep.append(".")
@@ -19,42 +19,42 @@ def get_board(x:chess.Board)->list:
     return board_rep
 
 @patch
-def draw_board(x:chess.Board, win:pygame.Surface):
+def draw_board(board:chess.Board, win:pygame.Surface):
     global assets
     img_board = pygame.transform.scale(assets["board"], BoardScale)
     win.blit(img_board, BoardShift)
-    x.draw_pieces(win)
-    if x.selected is not None:
-        x.highlight(win)
+    board.draw_pieces(win)
+    if board.selected is not None:
+        board.highlight(win)
 
 @patch
-def draw_pieces(x:chess.Board, win:pygame.Surface):
+def draw_pieces(board:chess.Board, win:pygame.Surface):
     global assets
-    board_rep = x.get_board()
+    board_rep = board.get_board()
     for c,col in enumerate(board_rep[::-1]):
         for r,symbol in enumerate(col):
             if symbol==".": continue
             win.blit(assets["Pieces"][symbol], (xmin+col_len*c,ymin+row_len*r))
 
 @patch
-def select(x:chess.Board, col:int, row:int):
+def select(board:chess.Board, col:int, row:int):
     coords = (col,row)
-    if x.selected is not None:
-        if x.selected != coords:
-            uci = coord2uci(x.selected, coords)
+    if board.selected is not None:
+        if board.selected != coords:
+            uci = coord2uci(board.selected, coords)
             move = chess.Move.from_uci(uci)
-            if x.is_legal(move):
-                x.push(move)
-        x.selected=None
+            if board.is_legal(move):
+                board.push(move)
+        board.selected=None
     else:
-        x.selected = coords
+        board.selected = coords
 
 @patch
-def highlight(x:chess.Board, win:pygame.Surface):
+def highlight(board:chess.Board, win:pygame.Surface):
     global assets
     select_effect = pygame.transform.scale(assets["highlight"], (int(col_len), int(row_len)))
-    win.blit(select_effect, x.get_selected_coord())
+    win.blit(select_effect, board.get_selected_coord())
 
 @patch
-def get_selected_coord(x:chess.Board):
+def get_selected_coord(board:chess.Board):
     return (300,0)

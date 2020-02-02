@@ -1,5 +1,5 @@
 from Chess.global_settings import *
-from Chess.board import *
+from Chess.chessboard import *
 import chess
 import pygame
 
