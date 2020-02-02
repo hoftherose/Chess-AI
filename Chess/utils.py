@@ -6,3 +6,7 @@ def uci(col:int, row:int):
 
 def coord2uci(Piece:Tuple(int,int), Dest:Tuple(int,int)):
     return uci(*Piece)+uci(*Dest)
+
+def prod(iterable:tuple):
+    mult=lambda x,y: x*y
+    return reduce(mult, iterable)
