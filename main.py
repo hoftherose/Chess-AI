@@ -6,13 +6,11 @@ import pygame
 chessboard = chess.Board()
 
 def refresh(win:pygame.Surface):
-    global chessboard
     rep = chessboard.get_board()
     chessboard.draw_board(win)
     pygame.display.update()
 
 def setup():
-    global chessboard
     pygame.init()
     win = pygame.display.set_mode(WindowSize)
     win.fill(WindowColor)
@@ -24,11 +22,9 @@ def setup():
     return win
 
 def run(win:pygame.Surface):
-    global chessboard
     running = True
     while running and not(chessboard.is_checkmate()):
         pygame.time.wait(100)
-        # refresh_board()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
