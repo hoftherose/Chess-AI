@@ -18,7 +18,8 @@ def select(board:chess.Board, col:int, row:int):
 @patch
 def legal_piece(board:chess.Board, coords):
     num = coords[0]*8+coords[1]
-    return board.piece_at(num).color == board.turn
+    if board.piece_at(num) is not None:
+        return board.piece_at(num).color == board.turn
 
 @patch
 def highlight(board:chess.Board, win:pygame.Surface):
