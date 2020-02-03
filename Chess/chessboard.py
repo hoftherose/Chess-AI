@@ -1,8 +1,5 @@
-from .global_settings import *
 from .chessvisuals import *
-from fastcore.all import patch
-import pygame
-import chess
+from .tools import *
 
 @patch
 def get_board(board:chess.Board)->list:

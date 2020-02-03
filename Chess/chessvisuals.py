@@ -1,9 +1,6 @@
-from .global_settings import *
+from .tools import *
 from .utils import *
 
-from fastcore.all import patch
-import pygame
-import chess
 
 @patch
 def select(board:chess.Board, col:int, row:int):
