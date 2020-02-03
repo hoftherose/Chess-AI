@@ -25,9 +25,15 @@ def legal_piece(board:chess.Board, coords):
 def highlight(board:chess.Board, win:pygame.Surface):
     global assets
     select_effect = pygame.transform.scale(assets["highlight"], (int(col_len), int(row_len)))
-    win.blit(select_effect, board.get_selected_coord())
+    win.blit(select_effect, board.get_coord(board.selected))
 
 @patch
-def get_selected_coord(board:chess.Board):
-    CellShift=[prod(values) for values in zip((col_len,row_len),board.selected)]
+def highlight_moves(board:chess.Board, win:pygame.Surface):
+    select_effect = pygame.transform.scale(assets["highlight"], (int(col_len), int(row_len)))
+    for moves in board.legal_moves:
+        win.blit(select_effect, board.get_coord(move))
+
+@patch
+def get_coord(board:chess.Board, cell:tuple):
+    CellShift=[prod(values) for values in zip((col_len,row_len),cell)]
     return [sum(values) for values in zip(BoardCorner,CellShift)]
