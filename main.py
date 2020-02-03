@@ -1,7 +1,5 @@
-from Chess.global_settings import *
+from Chess.tools import *
 from Chess.chessboard import *
-import chess
-import pygame
 
 chessboard = chess.Board()
 
