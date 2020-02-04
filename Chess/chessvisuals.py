@@ -30,9 +30,12 @@ def highlight(board:chess.Board, win:pygame.Surface):
 @patch
 def highlight_moves(board:chess.Board, win:pygame.Surface):
     select_effect = pygame.transform.scale(assets["highlight_legal"], (int(col_len), int(row_len)))
+    attack_effect = pygame.transform.scale(assets["highlight_attack"], (int(col_len), int(row_len)))
     for move in board.legal_moves:
         move_coord = uci2coord(move.uci())
-        if move_coord[0] == board.selected:
+        if move_coord[0] == board.selected and board.is_capture(move):
+            win.blit(attack_effect, board.get_coord(move_coord[1]))
+        elif move_coord[0] == board.selected:
             win.blit(select_effect, board.get_coord(move_coord[1]))
 
 @patch
