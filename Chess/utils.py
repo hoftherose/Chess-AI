@@ -7,7 +7,7 @@ def coord2uci(Piece:Tuple(int,int), Dest:Tuple(int,int)):
 
 def uci2coord(uci:str):
     letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    coord_ify = lambda uci: ((letters.index(uci[0]), int(uci[1])), (letters.index(uci[2]), int(uci[3])))
+    coord_ify = lambda uci: ((int(uci[1])-1, letters.index(uci[0])), (int(uci[3])-1, letters.index(uci[2])))
     return coord_ify(uci)
 
 def prod(iterable:tuple):

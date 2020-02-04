@@ -23,6 +23,7 @@ def draw_board(board:chess.Board, win:pygame.Surface):
     board.draw_pieces(win)
     if board.selected is not None:
         board.highlight(win)
+        board.highlight_moves(win)
 
 @patch
 def draw_pieces(board:chess.Board, win:pygame.Surface):
