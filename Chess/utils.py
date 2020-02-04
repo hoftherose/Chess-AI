@@ -1,11 +1,14 @@
 from fastcore.all import *
 
-def uci(col:int, row:int):
-    letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    return letters[row]+str(col+1)
-
 def coord2uci(Piece:Tuple(int,int), Dest:Tuple(int,int)):
-    return uci(*Piece)+uci(*Dest)
+    letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
+    uci_ify = lambda col,row: letters[row]+str(col+1)
+    return uci_ify(*Piece)+uci_ify(*Dest)
+
+def uci2coord(uci:str):
+    letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
+    coord_ify = lambda uci: ((letters.index(uci[0]), int(uci[1])), (letters.index(uci[2]), int(uci[3])))
+    return coord_ify(uci)
 
 def prod(iterable:tuple):
     mult=lambda x,y: x*y
