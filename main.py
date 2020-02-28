@@ -3,6 +3,12 @@ from Chess.chessboard import *
 
 chessboard = chess.Board()
 
+class Game():
+    def __init__(self, win):
+    @classmethod
+    def create(cls):
+        return cls(setupWindow())
+
 def refresh(win:pygame.Surface):
     rep = chessboard.get_board()
     chessboard.draw_board(win)
