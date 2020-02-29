@@ -1,5 +1,6 @@
 from Chess.tools import *
 from Chess.chessboard import *
+from Chess.player import *
 
 def setupWindow():
     pygame.init()
@@ -11,15 +12,15 @@ def setupWindow():
     return win
 
 class Game():
-    def __init__(self, win):
+    def __init__(self, win:pygame.Surface, player1:Player, player2:Player):
+        store_attr(self, "win,player1,player2")
         self.board = chess.Board()
         self.board.selected = None
-        self.win = win
         self.refresh()
 
     @classmethod
-    def create(cls):
-        return cls(setupWindow())
+    def create(cls, player1:Player, player2:Player):
+        return cls(setupWindow(), player1, player2)
 
     def refresh(self):
         rep = self.board.get_board()
@@ -41,7 +42,8 @@ class Game():
             self.refresh()
 
 def main():
-    game = Game.create()
+    whitePlayer, blackPlayer = PlayerHuman("Whites", True), PlayerHuman("Blacks", False)
+    game = Game.create(whitePlayer, blackPlayer)
     game.run()
 
 if __name__ == "__main__":
