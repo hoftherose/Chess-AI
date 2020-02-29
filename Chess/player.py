@@ -17,3 +17,14 @@ class Player():
 class PlayerHuman(Player):
     def selectMove(self):
         pass
+
+class PlayerModel(Player):
+    def __init__(self, name:str, color:bool, model:callable, time:int=1800, elo:int=1200):
+        super.__init__(name,color,time,elo)
+        self.model = model
+
+    def getPosibleMoves(self):
+        pass
+
+    def getPred(self):
+        raise NotImplementedError
