@@ -30,15 +30,8 @@ class Game():
     def run(self):
         running = True
         while running and not(self.board.is_checkmate()):
-            pygame.time.wait(100)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    absx, absy = event.pos
-                    if 0 <= (x:=absx-xmin) and x <= xrang and 0 <= (y:=absy-ymin) and y <= yrang:
-                        col, row = int(x//col_len), int(y//row_len)
-                        self.board.select(col,row)
+            if self.board.turn: self.player1.selectMove(self.board)
+            else: self.player2.selectMove(self.board)
             self.refresh()
 
 def main():

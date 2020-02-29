@@ -15,8 +15,16 @@ class Player():
         raise NotImplementedError
 
 class PlayerHuman(Player):
-    def selectMove(self):
-        pass
+    def selectMove(self, board):
+        pygame.time.wait(100)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                absx, absy = event.pos
+                if 0 <= (x:=absx-xmin) and x <= xrang and 0 <= (y:=absy-ymin) and y <= yrang:
+                    col, row = int(x//col_len), int(y//row_len)
+                    board.select(col,row)
 
 class PlayerModel(Player):
     def __init__(self, name:str, color:bool, model:callable, time:int=1800, elo:int=1200):

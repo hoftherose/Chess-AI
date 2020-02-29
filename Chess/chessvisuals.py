@@ -1,7 +1,6 @@
 from .tools import *
 from .utils import *
 
-
 @patch
 def select(board:chess.Board, col:int, row:int):
     coords = (col,row)
