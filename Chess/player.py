@@ -10,3 +10,10 @@ class Player():
     
     def __repr__(self):
         return f"Player Name: {self.name} with {self.elo} ELO, playing {'whites' if self.color else 'blacks'}. Time remaining {timedelta(seconds=self.time)}."
+    
+    def selectMove(self):
+        raise NotImplementedError
+
+class PlayerHuman(Player):
+    def selectMove(self):
+        pass
