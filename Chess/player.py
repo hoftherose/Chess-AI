@@ -11,7 +11,7 @@ class Player():
     def __repr__(self):
         return f"Player Name: {self.name} with {self.elo} ELO, playing {'whites' if self.color else 'blacks'}. Time remaining {timedelta(seconds=self.time)}."
     
-    def selectMove(self):
+    def selectMove(self, board):
         raise NotImplementedError
 
 class PlayerHuman(Player):
@@ -27,12 +27,17 @@ class PlayerHuman(Player):
                     board.select(col,row)
 
 class PlayerModel(Player):
-    def __init__(self, name:str, color:bool, model:callable, time:int=1800, elo:int=1200):
+    def __init__(self, name:str, color:bool, model:callable, time:int=1800, elo:int=1200, *args, **kwargs):
         super.__init__(name,color,time,elo)
-        self.model = model
+        store_attr(self, "model,args,kwargs")
 
-    def getPosibleMoves(self):
-        pass
+    def selectMove(self, board):
+        getMoves = self.getPosibleMoves(board)
+        nextMove = self.getPred(board, moves:list)
+        board.push(nextMove)
 
-    def getPred(self):
+    def getPosibleMoves(self, board):
+        raise NotImplementedError
+
+    def getPred(self, board, moves:list):
         raise NotImplementedError
