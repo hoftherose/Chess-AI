@@ -1,5 +1,6 @@
 from .tools import *
 from datetime import timedelta
+from fastcore.imports import noop
 
 class Player():
     def __init__(self, name:str, color:bool, time:int=1800, elo:int=1200):
@@ -27,16 +28,16 @@ class PlayerHuman(Player):
                     board.select(col,row)
 
 class PlayerModel(Player):
-    def __init__(self, name:str, color:bool, model:callable, time:int=1800, elo:int=1200, *args, **kwargs):
-        super.__init__(name,color,time,elo)
+    def __init__(self, name:str, color:bool, model:callable=noop, time:int=1800, elo:int=1200, *args, **kwargs):
+        super().__init__(name,color,time,elo)
         store_attr(self, "model,args,kwargs")
 
     def selectMove(self, board):
-        getMoves = self.getPosibleMoves(board)
-        nextMove = self.getPred(board, moves:list)
+        getMoves = self.getPossibleMoves(board)
+        nextMove = self.getPred(board, getMoves)
         board.push(nextMove)
 
-    def getPosibleMoves(self, board):
+    def getPossibleMoves(self, board):
         raise NotImplementedError
 
     def getPred(self, board, moves:list):
