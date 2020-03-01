@@ -30,8 +30,10 @@ class Game():
     def run(self):
         running = True
         while running and not(self.board.is_checkmate()):
-            if self.board.turn: self.player1.selectMove(self.board)
-            else: self.player2.selectMove(self.board)
+            if self.board.turn:
+                running = self.player1.selectMove(self.board)
+            else:
+                running = self.player2.selectMove(self.board)
             self.refresh()
 
 def main():
