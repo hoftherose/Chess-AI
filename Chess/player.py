@@ -44,3 +44,10 @@ class PlayerModel(Player):
 
     def getPred(self, board, moves:list):
         raise NotImplementedError
+
+class PlayerModelExample(PlayerModel):
+    def getPossibleMoves(self, board):
+        return list(board.generate_legal_moves())
+
+    def getPred(self, board, moves:list):
+        return moves[0]
